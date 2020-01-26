@@ -37,21 +37,23 @@ public class CameraManager : MonoBehaviour
 
             SwitchCamera(currentCameraId);
         }
-        m_MessageText.text =
-            "Joystick identificado: " + Input.GetJoystickNames()[0] + "\n" +
-            "LeftHorizontal   " + Input.GetAxis("LeftStickHorizontal") +
-            "\nLeftVertical   " + Input.GetAxis("LeftStickVertical") +
-            "\nRightHorizontal   " + Input.GetAxis("RightStickHorizontal") +
+        /*         m_MessageText.text =
+                "Joystick identificado: " + Input.GetJoystickNames()[0] + "\n" +
+                "LeftHorizontal   " + Input.GetAxis("LeftStickHorizontal") +
+                "\nLeftVertical   " + Input.GetAxis("LeftStickVertical") +
+                "\nRightHorizontal   " + Input.GetAxis("RightStickHorizontal") +
 
-            "\nRightVertical   " + Input.GetAxis("RightStickVertical") +
-            "\n\n" + 
-            "LeftHor - Raw   " + Input.GetAxisRaw("LeftStickHorizontal") +
-            "\nLeftVer - Raw   " + Input.GetAxisRaw("LeftStickVertical") +
-            "\nRightHor - Raw   " + Input.GetAxisRaw("RightStickHorizontal") +
+                "\nRightVertical   " + Input.GetAxis("RightStickVertical") +
+                "\n\n" + 
+                "LeftHor - Raw   " + Input.GetAxisRaw("LeftStickHorizontal") +
+                "\nLeftVer - Raw   " + Input.GetAxisRaw("LeftStickVertical") +
+                "\nRightHor - Raw   " + Input.GetAxisRaw("RightStickHorizontal") +
 
-            "\nRightVer - Raw   " + Input.GetAxisRaw("RightStickVertical") +
+                "\nRightVer - Raw   " + Input.GetAxisRaw("RightStickVertical") +
 
-            "";
+                "";
+                */
+        m_MessageText.text = "";
     }
 
     private void SwitchCamera(int cCam)

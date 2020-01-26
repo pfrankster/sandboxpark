@@ -6,9 +6,13 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     Rigidbody rbDrone;
-    public float upForce;
+    private float upForce;
+    public float initUpForce;
+
 
     public float sensibility = 0.3f;
+
+    public Vector3 lastPosition; 
 //movefoward - Pitch
     public float speedForward = 300;
     public float speedUpForce = 450;
@@ -38,6 +42,8 @@ public class MovementController : MonoBehaviour
     void Start()
     {
         rbDrone.isKinematic = false;
+
+        lastPosition = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -65,6 +71,8 @@ public class MovementController : MonoBehaviour
         {
             transform.position = new Vector3(0, 3, 0);
         }
+
+        lastPosition = this.transform.position;
     }
 
 
@@ -100,7 +108,9 @@ public class MovementController : MonoBehaviour
     {
         float adjustlimit = 0.9f;
         //float maxVelocity = 55.0f; 
-        float maxVelocity = 75.0f; 
+        //float maxVelocity = 75.0f; 
+        float maxVelocity = 175.0f; 
+
 
         if( Mathf.Abs( Input.GetAxis("RightStickVertical")) > adjustlimit || Mathf.Abs( Input.GetAxis("RightStickVertical"))  < - adjustlimit)
         {
@@ -128,6 +138,8 @@ public class MovementController : MonoBehaviour
         if(Input.GetButton("YButton"))
         {
             transform.position = new Vector3(0, 5, 0);
+
+
         }
     }
 
@@ -136,12 +148,12 @@ public class MovementController : MonoBehaviour
         if (Input.GetAxis("LeftStickHorizontal") >= 0.35f)
         {
             wantedRotation += rotateAmountByKeys;
-            Debug.Log("Rotacionando para DIR");
+            //Debug.Log("Rotacionando para DIR");
         }
         else if(Input.GetAxis("LeftStickHorizontal") <= -0.35f)
         {
             wantedRotation -= rotateAmountByKeys;
-            Debug.Log("Rotacionando para ESQ");
+            //Debug.Log("Rotacionando para ESQ");
         }
 
         currentYRotation = Mathf.SmoothDamp(currentYRotation, wantedRotation, ref rotationYVelocity, 0.25f);
@@ -165,21 +177,28 @@ public class MovementController : MonoBehaviour
 
     private void MoveUpDown()
     {
+        //UP
         if (Input.GetAxis("LeftStickVertical") < sensibility && Input.GetAxis("LeftStickVertical") < 0)
         {
             upForce = speedUpForce;
             
         }
 
-
+        //DOWN
         else  if (Input.GetAxis("LeftStickVertical") > sensibility )
         {
             upForce = -speedUpForce ;
             
         }
+        //STABLE
         else 
         {
-            upForce = -98.1f;
+            
+            //upForce = -98.1f;
+            upForce = initUpForce;
+
+            
+            
         }
     }
 }
